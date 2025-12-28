@@ -31,6 +31,90 @@
 
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 
+        /* Modal Popup */
+        .modal {
+            display: flex;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            max-width: 500px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            animation: slideUp 0.3s ease-out;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .modal-content h2 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-size: 28px;
+        }
+
+        .modal-content p {
+            color: var(--light-text);
+            margin-bottom: 20px;
+            line-height: 1.8;
+            font-size: 16px;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .modal-buttons a, .modal-buttons button {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            text-decoration: none;
+            transition: 0.3s;
+            font-size: 15px;
+        }
+
+        .btn-whatsapp {
+            background: #25D366;
+            color: white;
+            flex: 1;
+            min-width: 150px;
+        }
+
+        .btn-whatsapp:hover {
+            background: #20BA5A;
+            transform: scale(1.05);
+        }
+
+        .btn-close {
+            background: #e5e7eb;
+            color: var(--text);
+            flex: 1;
+            min-width: 150px;
+        }
+
+        .btn-close:hover {
+            background: #d1d5db;
+        }
+
         header {
             background: linear-gradient(135deg, var(--dark) 0%, var(--primary) 100%);
             color: white;
@@ -114,6 +198,13 @@
         }
 
         .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
+
+        .btn-whatsapp-main {
+            background: #25D366;
+            color: white;
+        }
+
+        .btn-whatsapp-main:hover { background: #20BA5A; }
 
         .section {
             padding: 80px 0;
@@ -227,10 +318,31 @@
             .hero h1 { font-size: 32px; }
             .cta { flex-direction: column; }
             .cta .btn { width: 100%; max-width: 300px; }
+            .modal-content { padding: 30px 20px; }
+            .modal-content h2 { font-size: 22px; }
         }
     </style>
 </head>
 <body>
+    <!-- Modal Popup -->
+    <div id="disclaimerModal" class="modal">
+        <div class="modal-content">
+            <h2>🎨 نموذج توضيحي</h2>
+            <p>
+هذا الموقع مجرد <strong>نموذج</strong> لموقع شركة نظافة واحترافي.
+            </p>
+            <p>
+للحصول على <strong>موقع مشابه</strong> لشركتك الخاصة، تواصل معنا الآن على الواتساب!
+            </p>
+            <div class="modal-buttons">
+                <a href="https://wa.me/201110760081" class="btn-whatsapp" target="_blank">
+                    💬 تواصل معنا على الواتساب
+                </a>
+                <button class="btn-close" onclick="closeModal()">إغلاق</button>
+            </div>
+        </div>
+    </div>
+
     <header>
         <div class="container">
             <div class="header-content">
@@ -255,7 +367,7 @@
             <h1>عناية تقنية لسيارتك</h1>
             <p>مركز التنظيف الأول بأحدث التجهيزات</p>
             <div class="cta">
-                <a href="tel:+966535474737" class="btn btn-primary">اتصل بنا الآن</a>
+                <a href="https://wa.me/201110760081" class="btn btn-whatsapp-main" target="_blank">💬 تواصل عبر الواتساب</a>
             </div>
         </div>
     </section>
@@ -293,7 +405,7 @@
                 <div class="service-card">
                     <div class="service-icon">🛋️</div>
                     <h3>غسيل بالماء العالي</h3>
-                    <p>غسيل بمياه عالية الضغط ومواد أمنة</p>
+                    <p>غسيل بمياه عالية الضغط ومواد آمنة</p>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">✨</div>
@@ -332,17 +444,20 @@
                     <h3>غسيل أساسي</h3>
                     <div class="price">50 ريال</div>
                     <p>✓ غسيل بمياه عالية<br>✓ 30 دقيقة</p>
+                    <a href="https://wa.me/201110760081" class="btn btn-primary" style="margin-top: 20px;" target="_blank">اطلب الآن</a>
                 </div>
                 <div class="price-card" style="background: linear-gradient(135deg, rgba(0, 102, 204, 0.05), rgba(255, 107, 53, 0.05)); border-color: var(--primary);">
                     <h3>👋 الأفضل</h3>
                     <h3>غسيل معيار</h3>
                     <div class="price">100 ريال</div>
                     <p>✓ غسيل + بوليبااش<br>✓ 45 دقيقة</p>
+                    <a href="https://wa.me/201110760081" class="btn btn-primary" style="margin-top: 20px;" target="_blank">اطلب الآن</a>
                 </div>
                 <div class="price-card">
                     <h3>عناية نهاياتية</h3>
                     <div class="price">200 ريال</div>
                     <p>✓ عزل رطوبة + بولي<br>✓ 60 دقيقة</p>
+                    <a href="https://wa.me/201110760081" class="btn btn-primary" style="margin-top: 20px;" target="_blank">اطلب الآن</a>
                 </div>
             </div>
         </div>
@@ -350,30 +465,30 @@
 
     <section class="section section-alt" id="reviews">
         <div class="container">
-            <h2>تقييمات عملاءنا</h2>
+            <h2>تقييمات عملائنا</h2>
             <div class="reviews">
                 <div class="review">
-                    <h3>محمد علي - ★★★★★</h3>
+                    <h3>محمد علي - ⭐⭐⭐⭐⭐</h3>
                     <p>"خدمة رائعة! السيارة براقان كاليوم الأول والفريق محترف"</p>
                 </div>
                 <div class="review">
-                    <h3>فهد الحبطين - ★★★★★</h3>
+                    <h3>فهد الحبطين - ⭐⭐⭐⭐⭐</h3>
                     <p>"أذهب 3 مرات ومرة بعد مرة أفضل. السعر معقول جدا"</p>
                 </div>
                 <div class="review">
-                    <h3>سلمان الخبيبك - ★★★★★</h3>
+                    <h3>سلمان الخبيبك - ⭐⭐⭐⭐⭐</h3>
                     <p>"شركة موثوقة والفريق ماهر بالتفاصيل"</p>
                 </div>
                 <div class="review">
-                    <h3>عبدالرحمان - ★★★★</h3>
+                    <h3>عبدالرحمان - ⭐⭐⭐⭐</h3>
                     <p>"زي موفق للغاية وسيارتي براقة للغاية"</p>
                 </div>
                 <div class="review">
-                    <h3>وليد الرشيد - ★★★★★</h3>
-                    <p>"الأفضل! اشرهم لكل أصدقائي وما نديم"</p>
+                    <h3>وليد الرشيد - ⭐⭐⭐⭐⭐</h3>
+                    <p>"الأفضل! اشرحهم لكل أصدقائي وما نديم"</p>
                 </div>
                 <div class="review">
-                    <h3>طارق الروباية - ★★★★★</h3>
+                    <h3>طارق الروباية - ⭐⭐⭐⭐⭐</h3>
                     <p>"سيارتي براقان وراحة بعد التنظيف عندهم"</p>
                 </div>
             </div>
@@ -383,9 +498,10 @@
     <section class="contact section">
         <div class="container">
             <h2>تواصل معنا</h2>
-            <p style="font-size: 20px; margin: 20px 0;">📱 <strong>+966 53 547 4737</strong></p>
+            <p style="font-size: 20px; margin: 20px 0;">💬 متاح 24/7</p>
             <p>📍 النسيم الشرقي، الرياض</p>
             <p>⏰ مفتوح 24/7 - العمل لا يتوقف</p>
+            <a href="https://wa.me/201110760081" class="btn btn-primary" style="margin-top: 20px;" target="_blank">💬 تواصل على الواتساب الآن</a>
         </div>
     </section>
 
@@ -394,6 +510,18 @@
     </footer>
 
     <script>
+        function closeModal() {
+            document.getElementById('disclaimerModal').style.display = 'none';
+        }
+
+        // Close modal when clicking outside of it
+        window.onclick = function(event) {
+            const modal = document.getElementById('disclaimerModal');
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        };
+
         document.querySelectorAll('a[href^="#"]').forEach(a => {
             a.addEventListener('click', function(e) {
                 e.preventDefault();
